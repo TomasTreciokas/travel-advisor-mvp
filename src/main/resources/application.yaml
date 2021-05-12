@@ -1,0 +1,29 @@
+server:
+  port: 8100
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    url: jdbc:h2:mem:trip-advisor
+    platform: h2
+    username: test
+    password:
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: none
+  flyway:
+    enabled: true
+    locations: classpath:sql/h2
+    check-location: true
+  h2:
+    console:
+      enabled: true
+
+services:
+  positionstack:
+    coordinates-url: http://api.positionstack.com/v1/forward
+    city-url: http://api.positionstack.com/v1/reverse
+    api-token-key: ${POSITIONSTACK_API_KEY}
