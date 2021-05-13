@@ -1,4 +1,4 @@
-package lt.traveladvisor.mvp.advisor.model;
+package lt.traveladvisor.mvp.advisor.model.entities;
 
 import org.hibernate.annotations.Where;
 
@@ -58,7 +58,6 @@ public class Backpack {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-
     private Advise advise;
 
     public Backpack(){
@@ -110,5 +109,9 @@ public class Backpack {
 
     public void addAllGear(Set<Item> gear) {
         this.gear.addAll(gear);
+    }
+
+    public void addClothes(Item item){
+        this.clothes.add(item);
     }
 }

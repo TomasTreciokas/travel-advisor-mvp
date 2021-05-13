@@ -1,4 +1,6 @@
-package lt.traveladvisor.mvp.advisor.model;
+package lt.traveladvisor.mvp.advisor.model.entities;
+
+import lt.traveladvisor.mvp.advisor.model.enums.ItemType;
 
 import javax.persistence.*;
 
@@ -13,6 +15,14 @@ public class Item {
     private ItemType type;
 
     private String name;
+
+    public Item(){
+    }
+
+    public Item(ItemType itemType, String name){
+        this.type = itemType;
+        this.name = name;
+    }
 
     public void setId(Long id) {
         this.id = id;

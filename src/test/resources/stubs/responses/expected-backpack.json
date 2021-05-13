@@ -1,0 +1,30 @@
+{
+  "medicine": [
+    {
+      "type": "MEDICINE",
+      "name": "Mock medicine"
+    }
+  ],
+  "gear": [
+    {
+      "type": "GEAR",
+      "name": "Mock gear"
+    }
+  ],
+  "clothes": [
+    {
+      "type": "CLOTHES",
+      "name": "Mock clothes"
+    },
+    {
+      "type": "CLOTHES",
+      "name": "Warm mock clothes"
+    }
+  ],
+  "food": [
+    {
+      "type": "FOOD",
+      "name": "Mock food"
+    }
+  ]
+}

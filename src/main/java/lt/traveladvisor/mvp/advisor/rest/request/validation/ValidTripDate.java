@@ -12,8 +12,10 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ValidTripDate {
 
-    String message() default "Inserted trip date interval is not valid";
+    String message() default "Failed date validation, usual problems: input past dates or wrong trip duration";
+
     Class<?>[] groups() default {};
-    Class<? extends Payload>[] payload() default{};
+
+    Class<? extends Payload>[] payload() default {};
 
 }

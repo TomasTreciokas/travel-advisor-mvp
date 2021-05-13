@@ -1,6 +1,6 @@
 package lt.traveladvisor.mvp.advisor.rest.response.mapper;
 
-import lt.traveladvisor.mvp.advisor.model.Advise;
+import lt.traveladvisor.mvp.advisor.model.entities.Advise;
 import lt.traveladvisor.mvp.advisor.rest.response.AdviseResponse;
 
 public class AdviseResponseMapper {

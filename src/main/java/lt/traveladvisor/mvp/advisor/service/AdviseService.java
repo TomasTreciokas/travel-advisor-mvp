@@ -1,6 +1,6 @@
 package lt.traveladvisor.mvp.advisor.service;
 
-import lt.traveladvisor.mvp.advisor.model.Advise;
+import lt.traveladvisor.mvp.advisor.model.entities.Advise;
 import lt.traveladvisor.mvp.advisor.repository.AdviseRepository;
 import org.springframework.stereotype.Service;
 

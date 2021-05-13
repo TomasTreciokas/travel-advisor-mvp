@@ -1,7 +1,7 @@
 package lt.traveladvisor.mvp.advisor.rest.response.mapper;
 
-import lt.traveladvisor.mvp.advisor.model.Backpack;
-import lt.traveladvisor.mvp.advisor.model.Item;
+import lt.traveladvisor.mvp.advisor.model.entities.Backpack;
+import lt.traveladvisor.mvp.advisor.model.entities.Item;
 import lt.traveladvisor.mvp.advisor.rest.response.BackpackResponse;
 
 import java.util.Set;

@@ -4,8 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.module.jaxb.JaxbAnnotationModule;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
@@ -22,6 +20,17 @@ public class JsonUtils {
         } catch (JsonProcessingException e) {
             throw new WebApplicationException(
                     "Failed deserialization during json processing, can't evaluate trip advise, please submit application again...",
+                    Response.Status.INTERNAL_SERVER_ERROR
+            );
+        }
+    }
+
+    public static String convertToString(Object object) {
+        try{
+            return objectMapper.writeValueAsString(object);
+        } catch(JsonProcessingException e){
+            throw new WebApplicationException(
+              "Failed serialization during json processing",
                     Response.Status.INTERNAL_SERVER_ERROR
             );
         }

@@ -1,4 +1,4 @@
-package lt.traveladvisor.mvp.advisor.model;
+package lt.traveladvisor.mvp.advisor.model.entities;
 
 import javax.persistence.*;
 

@@ -1,6 +1,6 @@
 package lt.traveladvisor.mvp.advisor.rest;
 
-import lt.traveladvisor.mvp.advisor.model.*;
+import lt.traveladvisor.mvp.advisor.model.entities.Advise;
 import lt.traveladvisor.mvp.advisor.rest.request.AdviseRequest;
 import lt.traveladvisor.mvp.advisor.rest.response.AdviseResponse;
 import lt.traveladvisor.mvp.advisor.rest.response.mapper.AdviseResponseMapper;

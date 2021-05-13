@@ -1,6 +1,6 @@
 package lt.traveladvisor.mvp.advisor.rest.response.mapper;
 
-import lt.traveladvisor.mvp.advisor.model.RestDestination;
+import lt.traveladvisor.mvp.advisor.model.entities.RestDestination;
 import lt.traveladvisor.mvp.advisor.rest.response.RestDestinationResponse;
 
 import java.util.List;

@@ -1,10 +1,11 @@
-package lt.traveladvisor.mvp.general.distance.service;
+package lt.traveladvisor.mvp.advisor.service;
 
-import lt.traveladvisor.mvp.advisor.model.RestDestination;
+import lt.traveladvisor.mvp.advisor.model.entities.RestDestination;
 import lt.traveladvisor.mvp.advisor.rest.request.AdviseRequest;
 import lt.traveladvisor.mvp.general.clients.positionstack.response.PlaceInfoResponse;
 import lt.traveladvisor.mvp.general.cityposition.service.CityPositionService;
-import lt.traveladvisor.mvp.general.weather.service.WeatherService;
+import lt.traveladvisor.mvp.advisor.model.PlaceCoordinates;
+import lt.traveladvisor.mvp.general.utils.WeatherUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -18,11 +19,9 @@ public class RestPlaceService {
     public static final double EARTH_MEAN_RADIUS = 6378.137;
 
     private final CityPositionService cityPositionService;
-    private final WeatherService weatherService;
 
-    public RestPlaceService(CityPositionService cityPositionService, WeatherService weatherService) {
+    public RestPlaceService(CityPositionService cityPositionService) {
         this.cityPositionService = cityPositionService;
-        this.weatherService = weatherService;
     }
 
     public Set<RestDestination> findRestPlaces(AdviseRequest request) {
@@ -33,13 +32,14 @@ public class RestPlaceService {
     }
 
     public Set<RestDestination> determineWeatherForRestPlaces(Set<RestDestination> restDestinations) {
-        return restDestinations.stream().peek(rd -> rd.setWeather(weatherService.forecast())).collect(Collectors.toSet());
+        return restDestinations.stream()
+                .peek(rd -> rd.setWeather(WeatherUtils.forecast()))
+                .collect(Collectors.toSet());
     }
 
     private Set<RestDestination> getRestPlaces(double preferredDistanceADay,
                                                PlaceInfoResponse startCityCoordinates,
                                                PlaceInfoResponse endCityCoordinates) {
-
         double tripDistance = calculateDistanceBetweenCities(startCityCoordinates, endCityCoordinates);
 
         Set<RestDestination> restPlaces = new HashSet<>();
@@ -48,7 +48,7 @@ public class RestPlaceService {
                 continue;
             }
 
-            PlaceInfoResponse restPlaceCoordinates =
+            PlaceCoordinates restPlaceCoordinates =
                     getRestPlaceCoordinates(startCityCoordinates, endCityCoordinates, restPlaceDistance, tripDistance);
 
             String restPlaceName = cityPositionService.retrieveCityNameByCoordinates(restPlaceCoordinates);
@@ -58,10 +58,10 @@ public class RestPlaceService {
         return restPlaces;
     }
 
-    private static PlaceInfoResponse getRestPlaceCoordinates(PlaceInfoResponse startCityCoordinates,
-                                                             PlaceInfoResponse endCityCoordinates,
-                                                             double restPlaceDistance,
-                                                             double tripDistance) {
+    private static PlaceCoordinates getRestPlaceCoordinates(PlaceInfoResponse startCityCoordinates,
+                                                            PlaceInfoResponse endCityCoordinates,
+                                                            double restPlaceDistance,
+                                                            double tripDistance) {
         double startCityLatitude = startCityCoordinates.getLatitude();
         double startCityLongitude = startCityCoordinates.getLongitude();
         double endCityLatitude = endCityCoordinates.getLatitude();
@@ -72,7 +72,7 @@ public class RestPlaceService {
         double restPlaceLatitude = (1 - ratio) * startCityLatitude + ratio * endCityLatitude;
         double restPlaceLongitude = (1 - ratio) * startCityLongitude + ratio * endCityLongitude;
 
-        return new PlaceInfoResponse(restPlaceLatitude, restPlaceLongitude);
+        return new PlaceCoordinates(restPlaceLatitude, restPlaceLongitude);
     }
 
     private static Double calculateDistanceBetweenCities(PlaceInfoResponse startCityCoordinates, PlaceInfoResponse endCityCoordinates) {

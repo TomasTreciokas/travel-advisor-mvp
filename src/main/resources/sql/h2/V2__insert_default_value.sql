@@ -37,7 +37,8 @@ VALUES ('Hat', 'CLOTHES'),
        ('Sweater', 'CLOTHES'),
        ('Warm jacket', 'CLOTHES'),
        ('Thermal clothes', 'CLOTHES'),
-       ('Gloves', 'CLOTHES');
+       ('Gloves', 'CLOTHES'),
+       ('Sunglasses for summer', 'CLOTHES');
 
 INSERT INTO item(name, type)
 VALUES ('Aspirin', 'MEDICINE'),

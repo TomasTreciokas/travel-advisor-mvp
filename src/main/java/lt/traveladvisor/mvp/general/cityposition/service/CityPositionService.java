@@ -1,5 +1,6 @@
 package lt.traveladvisor.mvp.general.cityposition.service;
 
+import lt.traveladvisor.mvp.advisor.model.PlaceCoordinates;
 import lt.traveladvisor.mvp.general.utils.JsonUtils;
 import lt.traveladvisor.mvp.general.clients.positionstack.PositionstackClient;
 import lt.traveladvisor.mvp.general.clients.positionstack.response.PlaceInfoResponse;
@@ -35,8 +36,7 @@ public class CityPositionService {
     /**
      * Retrieves city name by provided longitude and latitude
      **/
-    public String retrieveCityNameByCoordinates(PlaceInfoResponse restPlaceDistance) {
-
+    public String retrieveCityNameByCoordinates(PlaceCoordinates restPlaceDistance) {
         String cityResponseBody = positionstackClient.getCityByCoordinates(restPlaceDistance.getLongitude(), restPlaceDistance.getLatitude());
 
         PositionstackForwardResponse response = JsonUtils.buildObjectFromJson(
